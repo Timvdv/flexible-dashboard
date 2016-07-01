@@ -7,7 +7,7 @@ A simple and lightweight Dashboard powered by ReactJS, did I mention it's super 
 
 
 ### Online demo :muscle:
-* [Flexible dashboard demo](https://github.com/babel/babel-loader)
+* [Flexible dashboard demo](http://dashboard.timvandevathorst.nl)
 
 
 ### Local installation
@@ -26,3 +26,9 @@ open http://localhost:3003
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+
+
+=====================
+
+
+*note: this is still in Alpha stage, at the moment only Pimatic is supported*
