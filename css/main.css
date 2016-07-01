@@ -1,0 +1,73 @@
+body
+{
+    background: #536DFE;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.gridster {
+    margin: 0px auto;
+}
+
+.list-nostyle {
+    list-style: none;
+}
+
+.gridster ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget {
+    text-align: center;
+    width: inherit;
+    height: inherit;
+    display: table-cell;
+    vertical-align: middle;
+    background: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.24);
+    border-radius: 4px;
+}
+
+.widget p
+{
+    font-weight: 300;
+    font-size: 20px;
+    color: #000000;
+    letter-spacing: 0px;
+}
+
+.menu.sidr
+{
+    background: #101C5A;
+}
+
+.menu li
+{
+    font-weight: 200;
+    font-size: 15px;
+    color: #FFFFFF;
+    letter-spacing: 0px;
+    border:none;
+}
+
+.menu hr
+{
+    border-color: #051049;
+}
+
+.sidr ul li
+{
+    border:none;
+}
+
+.sidr ul li:hover>a, .sidr ul li:hover>span, .sidr ul li.active>a, .sidr ul li.active>span, .sidr ul li.sidr-class-active>a, .sidr ul li.sidr-class-active>span
+{
+    border:none;
+    box-shadow: none;
+}
+
+.error
+{
+    color: red;
+}

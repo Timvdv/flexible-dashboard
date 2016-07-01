@@ -1,0 +1,17 @@
+.axisLine path,
+.axisLine line
+{
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.area
+{
+    fill: #27ae60;
+}
+
+.graph-widget text
+{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

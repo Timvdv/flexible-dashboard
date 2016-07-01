@@ -1,0 +1,696 @@
+{
+  "devices": [
+    {
+      "id": "curtain",
+      "name": "Gordijn",
+      "template": "switch",
+      "attributes": [
+        {
+          "description": "The current state of the switch",
+          "type": "boolean",
+          "labels": [
+            "on",
+            "off"
+          ],
+          "label": "State",
+          "discrete": true,
+          "name": "state",
+          "value": false,
+          "history": [
+            {
+              "t": 1464195608957,
+              "v": false
+            },
+            {
+              "t": 1464206838995,
+              "v": false
+            },
+            {
+              "t": 1464249601445,
+              "v": true
+            },
+            {
+              "t": 1464282001676,
+              "v": false
+            },
+            {
+              "t": 1464336002689,
+              "v": true
+            },
+            {
+              "t": 1464368401566,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464368401566
+        }
+      ],
+      "actions": [
+        {
+          "description": "Turns the swch on",
+          "name": "turnOn"
+        },
+        {
+          "description": "Turns the switch off",
+          "name": "turnOff"
+        },
+        {
+          "description": "Changes the switch to on or off",
+          "params": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "changeStateTo"
+        },
+        {
+          "description": "Toggle the state of the switch",
+          "name": "toggle"
+        },
+        {
+          "description": "Returns the current state of the switch",
+          "returns": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "getState"
+        }
+      ],
+      "config": {
+        "id": "curtain",
+        "name": "Gordijn",
+        "class": "ShellSwitch",
+        "onCommand": "xx",
+        "offCommand": "xx",
+        "getStateCommand": "echo false",
+        "interval": 0
+      },
+      "configDefaults": {
+        "interval": 0
+      }
+    },
+    {
+      "id": "tv-buttons",
+      "name": "Turn on the television",
+      "template": "buttons",
+      "attributes": [
+        {
+          "description": "The last pressed button",
+          "type": "string",
+          "label": "Button",
+          "discrete": true,
+          "name": "button",
+          "value": null,
+          "history": [
+            {
+              "t": 1462898527564,
+              "v": "tv-on"
+            },
+            {
+              "t": 1464206838993,
+              "v": null
+            }
+          ],
+          "lastUpdate": 1464206838993
+        }
+      ],
+      "actions": [
+        {
+          "params": {
+            "buttonId": {
+              "type": "string"
+            }
+          },
+          "description": "Press a button",
+          "name": "buttonPressed"
+        }
+      ],
+      "config": {
+        "id": "tv-buttons",
+        "name": "Turn on the television",
+        "class": "ButtonsDevice",
+        "buttons": [
+          {
+            "id": "tv-on",
+            "text": "On"
+          }
+        ]
+      },
+      "configDefaults": {
+        "buttons": []
+      }
+    },
+    {
+      "id": "colorloop-hue",
+      "name": "Kleuren",
+      "template": "switch",
+      "attributes": [
+        {
+          "description": "The current state of the switch",
+          "type": "boolean",
+          "labels": [
+            "on",
+            "off"
+          ],
+          "label": "State",
+          "discrete": true,
+          "name": "state",
+          "value": false,
+          "history": [
+            {
+              "t": 1463817600600,
+              "v": false
+            },
+            {
+              "t": 1464206839046,
+              "v": false
+            },
+            {
+              "t": 1464249600579,
+              "v": true
+            },
+            {
+              "t": 1464253200748,
+              "v": false
+            },
+            {
+              "t": 1464336000597,
+              "v": true
+            },
+            {
+              "t": 1464339600779,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464339600779
+        }
+      ],
+      "actions": [
+        {
+          "description": "Turns the swch on",
+          "name": "turnOn"
+        },
+        {
+          "description": "Turns the switch off",
+          "name": "turnOff"
+        },
+        {
+          "description": "Changes the switch to on or off",
+          "params": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "changeStateTo"
+        },
+        {
+          "description": "Toggle the state of the switch",
+          "name": "toggle"
+        },
+        {
+          "description": "Returns the current state of the switch",
+          "returns": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "getState"
+        }
+      ],
+      "config": {
+        "id": "colorloop-hue",
+        "name": "Kleuren",
+        "class": "ShellSwitch",
+        "onCommand": "xx",
+        "offCommand": "xx",
+        "getStateCommand": "echo false",
+        "interval": 0
+      },
+      "configDefaults": {
+        "interval": 0
+      }
+    },
+    {
+      "id": "all-hue-on",
+      "name": "Lichtena aan",
+      "template": "switch",
+      "attributes": [
+        {
+          "description": "The current state of the switch",
+          "type": "boolean",
+          "labels": [
+            "on",
+            "off"
+          ],
+          "label": "State",
+          "discrete": true,
+          "name": "state",
+          "value": false,
+          "history": [
+            {
+              "t": 1464206839069,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464206839069
+        }
+      ],
+      "actions": [
+        {
+          "description": "Turns the swch on",
+          "name": "turnOn"
+        },
+        {
+          "description": "Turns the switch off",
+          "name": "turnOff"
+        },
+        {
+          "description": "Changes the switch to on or off",
+          "params": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "changeStateTo"
+        },
+        {
+          "description": "Toggle the state of the switch",
+          "name": "toggle"
+        },
+        {
+          "description": "Returns the current state of the switch",
+          "returns": {
+            "state": {
+              "type": "boolean"
+            }
+          },
+          "name": "getState"
+        }
+      ],
+      "config": {
+        "id": "all-hue-on",
+        "name": "Lights on",
+        "class": "ShellSwitch",
+        "onCommand": "xx",
+        "offCommand": "xx",
+        "getStateCommand": "echo false",
+        "interval": 0
+      },
+      "configDefaults": {
+        "interval": 0
+      }
+    },
+    {
+      "id": "wekker",
+      "name": "wekker",
+      "template": "device",
+      "attributes": [
+        {
+          "description": "Wekker",
+          "label": "$Wekker",
+          "type": "string",
+          "discrete": true,
+          "name": "Wekker",
+          "value": "10:00AM",
+          "history": [
+            {
+              "t": 1464206733908,
+              "v": "09:00AM"
+            },
+            {
+              "t": 1464206839325,
+              "v": "09:00AM"
+            },
+            {
+              "t": 1464206839326,
+              "v": "09:00AM"
+            },
+            {
+              "t": 1464218516406,
+              "v": "10:00AM"
+            }
+          ],
+          "lastUpdate": 1464218516406
+        }
+      ],
+      "actions": [],
+      "config": {
+        "id": "wekker",
+        "name": "wekker",
+        "class": "VariablesDevice",
+        "variables": [
+          {
+            "name": "Wekker",
+            "expression": "$alarm",
+            "type": "string"
+          }
+        ]
+      },
+      "configDefaults": {
+        "variables": []
+      }
+    },
+    {
+      "id": "rfx-switch-1",
+      "name": "Windowfarm",
+      "template": "switch",
+      "attributes": [
+        {
+          "description": "The current state of the switch",
+          "type": "boolean",
+          "labels": [
+            "on",
+            "off"
+          ],
+          "label": "State",
+          "discrete": true,
+          "name": "state",
+          "value": false,
+          "history": [
+            {
+              "t": 1464144600701,
+              "v": false
+            },
+            {
+              "t": 1464206839075,
+              "v": null
+            },
+            {
+              "t": 1464223800331,
+              "v": true
+            },
+            {
+              "t": 1464231000342,
+              "v": false
+            },
+            {
+              "t": 1464310200337,
+              "v": true
+            },
+            {
+              "t": 1464317400349,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464317400349
+        }
+      ],
+      "actions": [
+        {
+          "description": "turns the switch on",
+          "name": "turnOn"
+        },
+        {
+          "description": "turns the switch off",
+          "name": "turnOff"
+        },
+        {
+          "description": "changes the switch to on or off",
+          "params": {
+            "state": {}
+          },
+          "name": "changeStateTo"
+        }
+      ],
+      "config": {
+        "id": "rfx-switch-1",
+        "name": "Windowfarm",
+        "class": "RFXComDevice",
+        "code": "xx",
+        "packetType": "Lighting2"
+      },
+      "configDefaults": {}
+    },
+    {
+      "id": "rfx-desk",
+      "name": "Desk light",
+      "template": "switch",
+      "attributes": [
+        {
+          "description": "The current state of the switch",
+          "type": "boolean",
+          "labels": [
+            "on",
+            "off"
+          ],
+          "label": "State",
+          "discrete": true,
+          "name": "state",
+          "value": true,
+          "history": [
+            {
+              "t": 1464206839085,
+              "v": null
+            }
+          ],
+          "lastUpdate": 1464206839085
+        }
+      ],
+      "actions": [
+        {
+          "description": "turns the switch on",
+          "name": "turnOn"
+        },
+        {
+          "description": "turns the switch off",
+          "name": "turnOff"
+        },
+        {
+          "description": "changes the switch to on or off",
+          "params": {
+            "state": {}
+          },
+          "name": "changeStateTo"
+        }
+      ],
+      "config": {
+        "id": "rfx-desk",
+        "name": "Desk light",
+        "class": "RFXComDevice",
+        "code": "xx",
+        "packetType": "Lighting2"
+      },
+      "configDefaults": {}
+    },
+    {
+      "id": "rfx-pir-sensor",
+      "name": "PIR",
+      "template": "presence",
+      "attributes": [
+        {
+          "description": "Presence of the human/device",
+          "type": "boolean",
+          "labels": [
+            "present",
+            "absent"
+          ],
+          "label": "Presence",
+          "discrete": true,
+          "name": "presence",
+          "value": false,
+          "history": [
+            {
+              "t": 1464206839091,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464206839091
+        }
+      ],
+      "actions": [
+        {
+          "description": "Get presence..",
+          "params": {
+            "state": {}
+          },
+          "name": "getPresence"
+        }
+      ],
+      "config": {
+        "id": "rfx-pir-sensor",
+        "name": "PIR",
+        "class": "RfxComPir",
+        "code": "xx",
+        "unit": 10,
+        "packetType": "Lighting2",
+        "resetTime": 6000,
+        "autoReset": true
+      },
+      "configDefaults": {}
+    },
+    {
+      "id": "rfx-contact-sensor",
+      "name": "Kamer deur",
+      "template": "contact",
+      "attributes": [
+        {
+          "description": "State of the contact",
+          "type": "boolean",
+          "labels": [
+            "closed",
+            "opened"
+          ],
+          "label": "Contact",
+          "discrete": true,
+          "name": "contact",
+          "value": false,
+          "history": [
+            {
+              "t": 1463562464546,
+              "v": true
+            },
+            {
+              "t": 1464206839106,
+              "v": false
+            }
+          ],
+          "lastUpdate": 1464206839106
+        }
+      ],
+      "actions": [],
+      "config": {
+        "id": "rfx-contact-sensor",
+        "name": "Kamer deur",
+        "class": "RfxComContactSensor",
+        "code": "0x00D5F8A6",
+        "unit": 10,
+        "packetType": "Lighting2",
+        "resetTime": 6000,
+        "autoReset": false
+      },
+      "configDefaults": {}
+    },
+    {
+      "id": "tester",
+      "name": "Tester",
+      "template": "buttons",
+      "attributes": [
+        {
+          "description": "The last pressed button",
+          "type": "string",
+          "label": "Button",
+          "discrete": true,
+          "name": "button",
+          "value": null,
+          "history": [
+            {
+              "t": 1462898671905,
+              "v": "test"
+            },
+            {
+              "t": 1464206839119,
+              "v": null
+            }
+          ],
+          "lastUpdate": 1464206839119
+        }
+      ],
+      "actions": [
+        {
+          "params": {
+            "buttonId": {
+              "type": "string"
+            }
+          },
+          "description": "Press a button",
+          "name": "buttonPressed"
+        }
+      ],
+      "config": {
+        "id": "tester",
+        "name": "Tester",
+        "class": "ButtonsDevice",
+        "buttons": [
+          {
+            "id": "test",
+            "text": "Test"
+          }
+        ]
+      },
+      "configDefaults": {
+        "buttons": []
+      }
+    },
+    {
+      "id": "quote",
+      "name": "quote of the day",
+      "template": "device",
+      "attributes": [
+        {
+          "description": "the quote",
+          "type": "string",
+          "label": "Quote",
+          "discrete": true,
+          "name": "quote",
+          "value": "The things you learn in maturity aren’t simple things such as acquiring information and skills. You learn not to engage in self-destructive behavior. You learn not to burn up energy in anxiety. You discover how to manage your tensions. You learn that self-pity and resentment are among the most toxic of drugs. You find that the world loves talent but pays off on character.",
+          "history": [
+            {
+              "t": 1464206735354,
+              "v": "Even if you’re on the right track, you’ll get run over if you just sit there...."
+            },
+            {
+              "t": 1464206839134,
+              "v": ""
+            },
+            {
+              "t": 1464206840581,
+              "v": "Even if you’re on the right track, you’ll get run over if you just sit there...."
+            },
+            {
+              "t": 1464224400726,
+              "v": "I wanted to achieve something essential in life, something that is not measured by money or position in society. The mountains are not stadiums where I satisfy my ambitions to achieve. They are my cathedrals, the houses of my religion. In the mountains I attempt to understand my life. They are the way I practice my religion. In the mountains I celebrate creation, on each journey I am reborn."
+            },
+            {
+              "t": 1464310800770,
+              "v": "The things you learn in maturity aren’t simple things such as acquiring information and skills. You learn not to engage in self-destructive behavior. You learn not to burn up energy in anxiety. You discover how to manage your tensions. You learn that self-pity and resentment are among the most toxic of drugs. You find that the world loves talent but pays off on character."
+            }
+          ],
+          "lastUpdate": 1464310800770
+        },
+        {
+          "description": "the quote author",
+          "type": "string",
+          "label": "Author",
+          "discrete": true,
+          "name": "author",
+          "value": "John Gardner",
+          "history": [
+            {
+              "t": 1464206735354,
+              "v": "Will Rogers"
+            },
+            {
+              "t": 1464206839134,
+              "v": ""
+            },
+            {
+              "t": 1464206840582,
+              "v": "Will Rogers"
+            },
+            {
+              "t": 1464224400727,
+              "v": "Anatoli Boukreev"
+            },
+            {
+              "t": 1464310800770,
+              "v": "John Gardner"
+            }
+          ],
+          "lastUpdate": 1464310800770
+        }
+      ],
+      "actions": [],
+      "config": {
+        "id": "quote",
+        "name": "quote of the day",
+        "quote": "",
+        "class": "QuoteDevice"
+      },
+      "configDefaults": {
+        "quote": ""
+      }
+    }
+  ],
+  "success": true
+}
