@@ -90,8 +90,12 @@ export default class PimaticSetup extends Component {
                     type: "GET",
                     url: this.state.url,
                     dataType: "json",
-                    username: this.state.username,
-                    password: this.state.password,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Basic ' + btoa(this.state.username + ":" + this.state.password));
+                    }.bind(this),
                     success: function(data)
                     {
                         resolve(data);

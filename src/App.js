@@ -100,7 +100,27 @@ export default class App extends Component {
         let widgets = [];
 
         if(this.state == null || this.state && this.state.widgets && !this.state.widgets.length > 0)
-            return (<div>No Widgets found :( Please: <button onclick={this.resetSettings}>Reset Settings</button></div>);
+            return (
+                <div>
+                    <h1>
+                        No Widgets found :(
+                    </h1>
+                    <p>
+                        This could be a problem with your API
+
+                        <ul>
+                            <li>Are you sure you provided the correct API URL / credentials?</li>
+                            <li>Are you sure the Dashboard supports your devices?</li>
+                        </ul>
+                    </p>
+                    <p>
+
+                        Please try again: <button onClick={this.resetSettings}>Reset Settings!</button>
+                    </p>
+                    <br/>
+                    <small>If you think this is a bug, please report it <a href="https://github.com/Timvdv/flexible-dashboard" target="_blank"> on Github </a></small>
+                </div>
+            );
 
         this.state.widgets.map(function(element, i)
         {

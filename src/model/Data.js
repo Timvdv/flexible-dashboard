@@ -62,6 +62,12 @@ export default class Data {
                     type: "GET",
                     url: this.settings.url,
                     dataType: "json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(this.settings.username + ":" + this.settings.password)
+                    },
                     success: function(data)
                     {
                         resolve(data);
@@ -69,11 +75,7 @@ export default class Data {
                     error: function()
                     {
                         reject(new Error("An error occurred while processing the devices"));
-                    },
-                    beforeSend: function(req)
-                    {
-                        req.setRequestHeader("Authorization", "Basic " + btoa(this.settings.username + ":" + this.settings.password));
-                    }.bind(this)
+                    }
                 });
         }.bind(this));
     }
