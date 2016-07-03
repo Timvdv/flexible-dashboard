@@ -107,12 +107,11 @@ export default class App extends Component {
                     </h1>
                     <p>
                         This could be a problem with your API
-
-                        <ul>
-                            <li>Are you sure you provided the correct API URL / credentials?</li>
-                            <li>Are you sure the Dashboard supports your devices?</li>
-                        </ul>
                     </p>
+                    <ul>
+                        <li>Are you sure you provided the correct API URL / credentials?</li>
+                        <li>Are you sure the Dashboard supports your devices?</li>
+                    </ul>
                     <p>
 
                         Please try again: <button onClick={this.resetSettings}>Reset Settings!</button>

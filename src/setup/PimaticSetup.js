@@ -191,6 +191,7 @@ export default class PimaticSetup extends Component {
                     </div>
 
                     <div className="setup-form-row">
+                        Usually: (http://pimatic-location:8080/api/devices/)
                         <label htmlFor="url">
                             Pimatic Location:
                         </label>
@@ -204,6 +205,7 @@ export default class PimaticSetup extends Component {
                     </div>
 
                     <div className="setup-form-row">
+                        The username used to log in with pimatic
                         <label htmlFor="username">
                             Username:
                         </label>
@@ -217,6 +219,7 @@ export default class PimaticSetup extends Component {
                     </div>
 
                     <div className="setup-form-row">
+                        The password used to log in with pimatic
                         <label htmlFor="password">
                             Password:
                         </label>

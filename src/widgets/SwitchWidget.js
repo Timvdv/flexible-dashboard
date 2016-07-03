@@ -14,7 +14,7 @@ export default class SwitchWidget extends Component {
         const settings = JSON.parse(localStorage.getItem("settings"));
 
         this.settings = {
-            'prodvider': settings.provider,
+            'provider': settings.provider,
             'url': settings.url,
             'username': settings.username,
             'password': settings.password
@@ -32,7 +32,7 @@ export default class SwitchWidget extends Component {
     {
         this.isActive = !this.isActive;
 
-        if(this.provider == "PimaticProvider")
+        if(this.settings.provider == "PimaticProvider")
             this.saveToggleSwitch();
 
         this.forceUpdate();
@@ -53,13 +53,19 @@ export default class SwitchWidget extends Component {
                     type: "GET",
                     url: this.settings.url + "/" + this.props.options.id + "/" +url,
                     dataType: "json",
-                    success: function(json)
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(this.settings.username + ":" + this.settings.password)
+                    },
+                    success: function(data)
                     {
-                        resolve(json);
+                        resolve(data);
                     },
                     error: function()
                     {
-                        reject(new Error("Switch could not be reached"));
+                        reject(new Error("An error occurred while changing the switch"));
                     }
                 });
         });
@@ -72,7 +78,7 @@ export default class SwitchWidget extends Component {
     {
         this.toggleSwitchPromise().then(function(response)
         {
-            //Switch is toggeld
+            console.log(awesome);
         }.bind(this), function(error)
         {
             console.error("Failed to toggle switch!", error);
