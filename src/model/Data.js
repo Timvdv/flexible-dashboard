@@ -1,7 +1,19 @@
 var Promise = require('es6-promise').Promise;
 
+import DummyProvider from './providers/DummyProvider';
+import PimaticProvider from './providers/PimaticProvider';
+
+/**
+ * This is the list we use to select all available setup templates
+ */
+const ProviderList = {
+    DummyProvider,
+    PimaticProvider
+};
+
 export default class Data {
     settings = {};
+    provider = null;
 
     constructor() {
         this.getSettings();
@@ -19,16 +31,26 @@ export default class Data {
             const settings = JSON.parse(localStorage.getItem("settings"));
 
             this.settings = {
-                'prodvider': settings.provider,
+                'provider': settings.provider,
                 'url': settings.url,
                 'username': settings.username,
                 'password': settings.password
             };
+
+            this.setProvider();
         }
         else
         {
             console.log("No settings found, use the setup");
         }
+    }
+
+    /**
+     * Set provider and pass the settings
+     */
+    setProvider()
+    {
+        this.provider = new ProviderList[this.settings.provider](this.settings);
     }
 
     /**
@@ -40,7 +62,7 @@ export default class Data {
     {
         return new Promise(function(resolve, reject)
         {
-            this.loadDevices().then(function(response)
+            this.provider.loadDevices().then(function(response)
             {
                 resolve(this.convertDevices(response));
             }.bind(this), function(error)
@@ -51,116 +73,24 @@ export default class Data {
     }
 
     /**
-     * the actual request to the API (the one the user entered)
-     * @returns {Promise}
-     */
-    loadDevices()
-    {
-        return new Promise(function(resolve, reject)
-        {
-            $.ajax(
-                {
-                    type: "GET",
-                    url: this.settings.url,
-                    dataType: "json",
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    headers: {
-                        'Authorization': 'Basic ' + btoa(this.settings.username + ":" + this.settings.password)
-                    },
-                    success: function(data)
-                    {
-                        resolve(data);
-                    },
-                    error: function()
-                    {
-                        reject(new Error("An error occurred while processing the devices"));
-                    }
-                });
-        }.bind(this));
-    }
-
-    /**
      * convert the retrieved devices to data this application can read
      * @param data
      * @returns {Array}
      */
     convertDevices(data)
     {
-        //Add some dummy devices to create a nice show-off dash
-        if(this.settings.prodvider == "DummyProvider")
-            return this.dummySetup(data);
-
-        //Start with empty widgets
-        let widgets = [];
-
-        //Loop over devices and convert the ones we know what to do with
-        data.devices.map( (device) =>
-        {
-            if(device.config.class == "ShellSwitch")
-            {
-                let item = {
-                    "name":device.name,
-                    "col":1,
-                    "row":1,
-                    "sizex":2,
-                    "sizey":2,
-                    "color":"#fff",
-                    "tag":"SwitchWidget",
-                    "options":
-                    {
-                        "value":device.attributes[0].value,
-                        "id":device.id,
-                        "on_url":device.actions[0].name,
-                        "off_url":device.actions[1].name
-                    }
-                };
-
-                widgets.push(item);
-            }
-        });
-
-        console.log(widgets);
-        return widgets;
+        return this.provider.convertDevices(data);
     }
 
-    dummySetup(data)
+    /**
+     * The load URL function can be called from all widgets, the data class
+     * makes sure the correct provider will handle the data
+     * @param url
+     * @param data
+     * @returns {*}
+     */
+    loadUrl(url, data)
     {
-        let widgets = [];
-
-        //Add the Graph widget
-        widgets.push({"name":"GraphWidget", "col":1,"row":1,"sizex":4,"sizey":2,"color":"#fff","options":{},"tag":"GraphWidget"});
-
-        //Loop over devices and convert the ones we know what to do with
-        data.devices.map( (device) =>
-        {
-            if(device.config.class == "ShellSwitch")
-            {
-                let item = {
-                    "name":device.name,
-                    "col":1,
-                    "row":1,
-                    "sizex":2,
-                    "sizey":2,
-                    "color":"#fff",
-                    "tag":"SwitchWidget",
-                    "options":
-                    {
-                        "value":device.attributes[0].value,
-                        "id":device.id,
-                        "on_url":device.actions[0].name,
-                        "off_url":device.actions[1].name
-                    }
-                };
-
-                widgets.push(item);
-            }
-        });
-
-        //Add the Buienradar widget
-        widgets.push({"name":"weatherWidget", "col":1,"row":1,"sizex":1,"sizey":1,"color":"#3498db","options":{},"tag":"WeatherWidget"});
-
-        return widgets;
+        return this.provider.loadUrl(url, data);
     }
 }

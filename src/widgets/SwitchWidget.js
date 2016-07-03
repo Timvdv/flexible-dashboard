@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 var Promise = require('es6-promise').Promise;
+import Data from '../model/Data';
 
 require("../../css/widgets/switch.css");
 
@@ -7,8 +8,12 @@ require("../../css/widgets/switch.css");
  * Really simple switch widget which turns something on / off
  */
 export default class SwitchWidget extends Component {
+    data = {};
+
     constructor(props) {
         super(props);
+
+        this.data = new Data();
 
         //The switch widget needs the settings to create an API call
         const settings = JSON.parse(localStorage.getItem("settings"));
@@ -32,9 +37,7 @@ export default class SwitchWidget extends Component {
     {
         this.isActive = !this.isActive;
 
-        if(this.settings.provider == "PimaticProvider")
-            this.saveToggleSwitch();
-
+        this.saveToggleSwitch();
         this.forceUpdate();
     }
 
@@ -44,32 +47,12 @@ export default class SwitchWidget extends Component {
      */
     toggleSwitchPromise()
     {
-        return new Promise((resolve, reject) =>
-        {
+        return new Promise((resolve, reject) => {
             const url = this.isActive ? this.props.options.on_url : this.props.options.off_url;
 
-            $.ajax(
-                {
-                    type: "GET",
-                    url: this.settings.url + "/" + this.props.options.id + "/" +url,
-                    dataType: "json",
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    headers: {
-                        'Authorization': 'Basic ' + btoa(this.settings.username + ":" + this.settings.password)
-                    },
-                    success: function(data)
-                    {
-                        resolve(data);
-                    },
-                    error: function()
-                    {
-                        reject(new Error("An error occurred while changing the switch"));
-                    }
-                });
-        });
-    }
+            resolve(this.data.loadUrl("/device/" +this.props.options.id + "/" + url));
+        } );
+    };
 
     /**
      * call the API and switch on / off
@@ -84,7 +67,7 @@ export default class SwitchWidget extends Component {
             console.error("Failed to toggle switch!", error);
         });
     }
-
+    
     render()
     {
         let switchState = "onoffswitch " + (this.isActive ? "active" : "");
