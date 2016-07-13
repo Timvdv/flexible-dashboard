@@ -1,6 +1,6 @@
 {
   "name": "flexible-dashboard",
-  "version": "0.7",
+  "version": "0.8.1",
   "description": "Simple and lightweight Dashboard powered by ReactJS",
   "scripts": {
     "test": "eslint src",
@@ -39,6 +39,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "history": "^3.0.0",
     "react": "^0.14.0",
     "react-d3-library": "^1.1.1",
     "react-dom": "^0.14.0",

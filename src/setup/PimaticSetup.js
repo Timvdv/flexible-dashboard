@@ -191,9 +191,23 @@ export default class PimaticSetup extends Component {
                     </div>
 
                     <div className="setup-form-row">
-                        <span className="help-text">Usually: (http://pimatic-location:8080/api)</span>
+                        <span className="help-text">Don't use http</span>
                         <label htmlFor="url">
-                            Pimatic Location:
+                            Pimatic IP:
+                        </label>
+                        <input
+                            id="url"
+                            placeholder="ex: http://localhost:4040"
+                            type="text"
+                            value={this.state.url}
+                            onChange={this.handleChangeUrl.bind(this)}
+                        />
+                    </div>
+
+                    <div className="setup-form-row">
+                        <span className="help-text">Usually 8080</span>
+                        <label htmlFor="url">
+                            Pimatic Port:
                         </label>
                         <input
                             id="url"
