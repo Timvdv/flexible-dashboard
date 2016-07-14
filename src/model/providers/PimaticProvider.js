@@ -53,6 +53,7 @@ export default class PimaticProvider
 
     loadUrl(url, data)
     {
+        console.log(this.settings.url);
         return new Promise(function(resolve, reject) {
             $.ajax(
             {

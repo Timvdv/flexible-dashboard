@@ -12,6 +12,7 @@ export default class PimaticSetup extends Component {
             step : 1,
             error: "",
             url: "",
+            port: 8080,
             username: "",
             password: ""
         };
@@ -88,7 +89,7 @@ export default class PimaticSetup extends Component {
             $.ajax(
                 {
                     type: "GET",
-                    url: this.state.url,
+                    url: this.state.url + ":" + this.state.port + "/api",
                     dataType: "json",
                     xhrFields: {
                         withCredentials: true
@@ -113,13 +114,15 @@ export default class PimaticSetup extends Component {
      */
     setDataProvider()
     {
+        this.state.url = this.state.url + ":" + this.state.port + "/api";
+
         const settings = {
             'provider': 'PimaticProvider',
             'url': this.state.url,
             'username': this.state.username,
             'password': this.state.password
         };
-
+        
         const settings_json = JSON.stringify(settings);
 
         localStorage.setItem("settings", settings_json);
@@ -127,7 +130,7 @@ export default class PimaticSetup extends Component {
         setTimeout(function ()
         {
             this.nextStep();
-        }.bind(this), 3000)
+        }.bind(this), 3000);
     }
 
     /**
@@ -142,6 +145,19 @@ export default class PimaticSetup extends Component {
             }
         );
     }
+
+    /**
+     * change port
+     * @param event
+     */
+    handleChangePort(event)
+    {
+        this.setState(
+            {
+                port: event.target.value
+            }
+        );
+    }    
 
     /**
      * put username to state
@@ -191,13 +207,13 @@ export default class PimaticSetup extends Component {
                     </div>
 
                     <div className="setup-form-row">
-                        <span className="help-text">Don't use http</span>
+                        <span className="help-text">http://example.com (no trailing slash!)</span>
                         <label htmlFor="url">
                             Pimatic IP:
                         </label>
                         <input
                             id="url"
-                            placeholder="ex: http://localhost:4040"
+                            placeholder="ex: http://localhost"
                             type="text"
                             value={this.state.url}
                             onChange={this.handleChangeUrl.bind(this)}
@@ -206,15 +222,15 @@ export default class PimaticSetup extends Component {
 
                     <div className="setup-form-row">
                         <span className="help-text">Usually 8080</span>
-                        <label htmlFor="url">
+                        <label htmlFor="port">
                             Pimatic Port:
                         </label>
                         <input
-                            id="url"
+                            id="port"
                             placeholder="ex: http://localhost:4040"
                             type="text"
-                            value={this.state.url}
-                            onChange={this.handleChangeUrl.bind(this)}
+                            value={this.state.port}
+                            onChange={this.handleChangePort.bind(this)}
                         />
                     </div>
 
