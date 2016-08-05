@@ -123,7 +123,6 @@ export default class App extends Component {
                         <li>Are you sure the Dashboard supports your devices?</li>
                     </ul>
                     <p>
-
                         Please try again: <button onClick={this.resetSettings}>Reset Settings!</button>
                     </p>
                     <br/>
@@ -145,6 +144,11 @@ export default class App extends Component {
             }
         });
 
+        let escape_dummy_setup = "";
+
+        if(JSON.parse(localStorage.getItem('settings')).provider == "DummyProvider")
+            escape_dummy_setup = (<button className="escapeDummySetup" onClick={this.resetSettings}>Reset Settings!</button>);
+
         return (
         <div>
             <div className="gridster">
@@ -156,6 +160,8 @@ export default class App extends Component {
                      *  <li id="simple-menu" className="widget" data-row="1" data-col="1" data-sizex="1" data-sizey="1" href="#sidr"><p>Show menu</p></li>
                      */}
                 </ul>
+
+                {escape_dummy_setup}
             </div>
             <Menu />
         </div>
