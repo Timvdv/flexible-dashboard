@@ -40,6 +40,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "es6-promise": "^3.2.1",
     "history": "^3.0.0",
     "react": "^0.14.0",
     "react-d3-library": "^1.1.1",
