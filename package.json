@@ -4,7 +4,8 @@
   "description": "Simple and lightweight Dashboard powered by ReactJS",
   "scripts": {
     "test": "eslint src",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack -p --config ./webpack.production.config.js"
   },
   "repository": {
     "type": "git",
