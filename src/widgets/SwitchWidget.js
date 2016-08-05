@@ -27,8 +27,20 @@ export default class SwitchWidget extends Component {
 
         this.isActive = this.props.options.value;
         this.clicked = this.clicked.bind(this);
+        this.updateTimer = 0;
     }
 
+
+    /**
+     * Update switch when state API state changed
+     */
+    componentWillReceiveProps()
+    {
+        setTimeout(() => {
+            this.isActive = this.props.options.value;
+            this.updateTimer = 0;
+        }, this.updateTimer )
+    }
 
     /**
      * When clicked on the switch call the api
@@ -37,6 +49,7 @@ export default class SwitchWidget extends Component {
     {
         this.isActive = !this.isActive;
 
+        this.updateTimer = 5000; //wait with updating until the timer is done
         this.saveToggleSwitch();
         this.forceUpdate();
     }
@@ -77,7 +90,7 @@ export default class SwitchWidget extends Component {
                 <p className="switch-text">
                     {this.props.name}
                 </p>
-                <div className="onoffswitch" onClick={this.clicked} className={switchState} >
+                <div className={switchState} onClick={this.clicked}>
                     <span type="checkbox" name="onoffswitch" id="myonoffswitch" />
                     <label className="onoffswitch-label" htmlFor="myonoffswitch" />
                 </div>

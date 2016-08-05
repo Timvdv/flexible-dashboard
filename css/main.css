@@ -25,8 +25,9 @@ body
     display: table-cell;
     vertical-align: middle;
     background: #fff;
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.24);
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.24);
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .widget p
@@ -34,7 +35,7 @@ body
     font-weight: 300;
     font-size: 20px;
     color: #000000;
-    letter-spacing: 0px;
+    letter-spacing: 0;
 }
 
 .menu.sidr

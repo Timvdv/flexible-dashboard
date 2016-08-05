@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
 /**
  * Setup the dashboard so it can connect to Pimatic!
@@ -199,6 +199,10 @@ export default class PimaticSetup extends Component {
         {
             case 1:
                 html = (<div className="Setup setup-pimatic">
+                    <div className="whitelist-domain">
+                        First: Whitelist this domain in Pimatic, otherwise CORS won't work.
+                    </div>
+                    
                     Enter your Pimatic credentials
                     <br />
 

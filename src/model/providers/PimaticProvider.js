@@ -36,6 +36,27 @@ export default class PimaticProvider
 
                 widgets.push(item);
             }
+
+            if(device.config.class == "ShellSensor")
+            {
+                let item = {
+                    "name":device.name,
+                    "col":1,
+                    "row":1,
+                    "sizex":1,
+                    "sizey":1,
+                    "color":"#fff",
+                    "tag":"SensorWidget",
+                    "options":
+                    {
+                        "unit": device.attributes[0].unit,
+                        "value":device.attributes[0].value,
+                        "id":device.id
+                    }
+                };
+
+                widgets.push(item);
+            }
         });
 
         return widgets;

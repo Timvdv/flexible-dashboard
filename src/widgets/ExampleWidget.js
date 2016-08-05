@@ -97,3 +97,12 @@ export default class ExampleWidget extends Component {
         );
     };
 }
+
+/**
+ *
+ * We're not done yet!!
+ *
+ *  - Make sure to load your widget at the top of App.js (the widgetList const)
+ *  - Add the condition when to load your widget in the provider you're using
+ *
+ * **/

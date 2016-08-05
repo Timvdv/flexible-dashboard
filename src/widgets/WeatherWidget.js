@@ -1,3 +1,10 @@
+/**
+ *
+ * !! This is actually a 'app' because it's independent from the settings..
+ * TODO: Implement a system that seperates these two types
+ *
+ */
+
 var Promise = require('es6-promise').Promise;
 import React, { Component } from 'react';
 
@@ -35,7 +42,6 @@ export default class ThermostatWidget extends Component {
     componentWillUnmount()
     {
         this.updateInterval = null;
-        this.getTemperture();
     }
 
     /**

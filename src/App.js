@@ -11,6 +11,7 @@ import ExampleWidget from './widgets/ExampleWidget';
 import WeatherWidget from './widgets/WeatherWidget';
 import SwitchWidget from './widgets/SwitchWidget';
 import GraphWidget from './widgets/GraphWidget';
+import SensorWidget from './widgets/SensorWidget';
 
 /**
  * This is the list we use to select all available widgets
@@ -19,7 +20,8 @@ const widgetList = {
     ExampleWidget,
     WeatherWidget,
     SwitchWidget,
-    GraphWidget
+    GraphWidget,
+    SensorWidget
 };
 
 export default class App extends Component {
@@ -56,25 +58,7 @@ export default class App extends Component {
                 widgets : JSON.parse(localStorage.getItem('widgets') || '{}')
             };
 
-            data.getDevices().then((response) =>
-            {
-                this.setState({'widgets': response});
-
-                localStorage.setItem('widgets', JSON.stringify(response));
-
-                $(".gridster ul").gridster(
-                    {
-                        widget_margins: [10, 10],
-                        widget_base_dimensions: [140, 140]
-                    }).data('gridster');
-
-                setTimeout( () => {
-                    data.getDevices();
-                }, 1000);
-            }, (error) =>
-            {
-                console.error("Failed to load devices!", error);
-            });
+            this.updateDevices(data);
         }
 
         this.grid = $(".gridster ul").gridster(
@@ -82,6 +66,29 @@ export default class App extends Component {
             widget_margins: [10, 10],
             widget_base_dimensions: [140, 140]
         }).data('gridster');
+    }
+
+    updateDevices(data)
+    {
+        data.getDevices().then((response) =>
+        {
+            this.setState({'widgets': response});
+
+            localStorage.setItem('widgets', JSON.stringify(response));
+
+            $(".gridster ul").gridster(
+                {
+                    widget_margins: [10, 10],
+                    widget_base_dimensions: [140, 140]
+                }).data('gridster');
+
+            setTimeout( () => {
+                this.updateDevices(data);
+            }, 3000);
+        }, (error) =>
+        {
+            console.error("Failed to load devices!", error);
+        });
     }
 
     resetSettings()
@@ -99,6 +106,8 @@ export default class App extends Component {
     render() {
         let widgets = [];
 
+        console.log("render");
+
         if(this.state == null || this.state && this.state.widgets && !this.state.widgets.length > 0)
             return (
                 <div>
@@ -109,6 +118,7 @@ export default class App extends Component {
                         This could be a problem with your API
                     </p>
                     <ul>
+                        <li>Is your API online?</li>
                         <li>Are you sure you provided the correct API URL / credentials?</li>
                         <li>Are you sure the Dashboard supports your devices?</li>
                     </ul>
