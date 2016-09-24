@@ -6,9 +6,7 @@ import App from './App';
 import Setup from './Setup'
 
 require("../css/vendor/gridster.css");
-require("../css/vendor/sidr.css");
 require("../css/main.css");
-
 
 /**
  * This is where we render correct component based on the URL

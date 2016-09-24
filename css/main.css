@@ -2,6 +2,8 @@ body
 {
     background: #536DFE;
     font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
 }
 
 .gridster {
@@ -38,37 +40,36 @@ body
     letter-spacing: 0;
 }
 
-.menu.sidr
-{
-    background: #101C5A;
-}
-
-.menu li
-{
-    font-weight: 200;
-    font-size: 15px;
-    color: #FFFFFF;
-    letter-spacing: 0px;
-    border:none;
-}
-
-.menu hr
-{
-    border-color: #051049;
-}
-
-.sidr ul li
-{
-    border:none;
-}
-
-.sidr ul li:hover>a, .sidr ul li:hover>span, .sidr ul li.active>a, .sidr ul li.active>span, .sidr ul li.sidr-class-active>a, .sidr ul li.sidr-class-active>span
-{
-    border:none;
-    box-shadow: none;
-}
-
 .error
 {
     color: red;
+}
+
+.widget.editing {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+}
+
+.remove-widget
+{
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+    z-index: 999;
+    overflow: visible;
+    top: 10px;
+    cursor: pointer;    
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: rotate(0deg);
+  }
+  
+  20%, 80% {
+    transform: rotate(0.3deg);
+  }
+
+  40%, 60% {
+    transform: rotate(-0.3deg);
+  }
 }
