@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class SensorWidget extends Component {
+export default class VariableWidget extends Component {
     constructor(props) {
         super(props);
 

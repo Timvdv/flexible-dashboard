@@ -49,15 +49,7 @@ export default class Menu extends Component {
             <div className="menu" id="sidr">
                 <ul>
                     {widget_header}
-
-                    {//
-                        // <li>
-                        //     <Link to={"\/setup"}>
-                        //         Setup
-                        //     </Link>
-                        // </li>
-                    }
-
+                    
                     {
                       this.props.widgets.map(function(element, i)
                       {

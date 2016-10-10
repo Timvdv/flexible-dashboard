@@ -13,6 +13,7 @@ import WeatherWidget from './widgets/WeatherWidget';
 import SwitchWidget from './widgets/SwitchWidget';
 import GraphWidget from './widgets/GraphWidget';
 import SensorWidget from './widgets/SensorWidget';
+import VariableWidget from './widgets/VariableWidget';
 
 /**
  * This is the list we use to select all available widgets
@@ -22,7 +23,8 @@ const widgetList = {
     WeatherWidget,
     SwitchWidget,
     GraphWidget,
-    SensorWidget
+    SensorWidget,
+    VariableWidget
 };
 
 export default class App extends Component {
@@ -154,11 +156,9 @@ export default class App extends Component {
 
     toggleWidget(e)
     {
-        let index = e.target.dataset.index;
-        let gridster = $(".gridster ul").data('gridster');
-
-        let element = this.state.widgets[index];
-        let Tag = widgetList[element.tag];
+         let index   = e.target.dataset.index,
+             element = this.state.widgets[index],
+             Tag     = widgetList[element.tag];
 
         var widget = (<div>
             <Widget
@@ -176,12 +176,11 @@ export default class App extends Component {
             </div>
         );
 
-        //fuuuu :(((((
-        gridster.add_widget(widget, 3, 4);
-
-        //this.state.widgets[index].hide = false;
-        //this.setState({widgets: this.state.widgets});
-        //localStorage.setItem('widgets', JSON.stringify(this.state.widgets));
+        this.state.widgets[index].hide = false;
+        this.setState({widgets: this.state.widgets});
+        localStorage.setItem('widgets', JSON.stringify(this.state.widgets));
+            
+        this.grid.register_widget(widget);
 
         this.updateGrid();
     }
@@ -268,7 +267,7 @@ export default class App extends Component {
 
                      <li id="simple-menu" className="widget" data-row="1" data-col="1" data-sizex="1" data-sizey="1" href="#sidr">
                         <br /><h1><i className="material-icons">menu</i></h1>
-                    </li>
+                     </li>
                 </ul>
 
             </div>

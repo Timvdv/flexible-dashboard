@@ -13,7 +13,7 @@ export default class PimaticProvider
         let widgets = [];
 
         //Loop over devices and convert the ones we know what to do with
-        data.devices.map( (device) =>
+        data.devices.map( device =>
         {
             if(device.config.class == "ShellSwitch")
             {
@@ -59,15 +59,45 @@ export default class PimaticProvider
             }
         });
 
+        if(!data.variables)
+            data.variables = [];
+
+        //Loop through variables if there are any
+        data.variables.map( device =>
+        {
+            if(device.value)
+            {
+                let item = {
+                    "name":device.name,
+                    "col":1,
+                    "row":1,
+                    "sizex":1,
+                    "sizey":1,
+                    "color":"#fff",
+                    "tag":"VariableWidget",
+                    "options":
+                    {
+                        "value":device.value,
+                    }
+                };
+
+                widgets.push(item);                
+            }
+        });        
+
         return widgets;
     }
 
     loadDevices()
     {
-        return new Promise(function(resolve, reject)
-        {
+        return new Promise(function(resolve, reject) {
             if (this.settings && this.settings.url) {
-                resolve(this.loadUrl("/devices"));
+                return this.loadUrl("/devices")
+                    .then(device_data => {
+                        return this.loadUrl("/variables").then(variable_data => {
+                            resolve(Object.assign(device_data, variable_data))
+                        });
+                    });
             }
         }.bind(this));
     }

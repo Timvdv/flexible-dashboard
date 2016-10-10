@@ -57,7 +57,7 @@ export default class Widget extends Component {
         };
 
         var editing = "",
-              classNames = "widget"
+              classNames = "widget gs-w"
 
         $('.widget').removeClass('editing');
 
@@ -68,7 +68,7 @@ export default class Widget extends Component {
         }
 
         return (
-            <li onMouseUp={this.mouseUp.bind(this)} onMouseDown={this.mouseDown.bind(this)} className={classNames} style={styles.widget} data-row={this.props.row} data-col={this.props.col} data-sizex={this.props.sizex} data-sizey={this.props.sizey} data-name={this.props.name}>
+            <li data-row="1" data-col="1" onMouseUp={this.mouseUp.bind(this)} onMouseDown={this.mouseDown.bind(this)} className={classNames} style={styles.widget} data-row={this.props.row} data-col={this.props.col} data-sizex={this.props.sizex} data-sizey={this.props.sizey} data-name={this.props.name}>
                 {editing}
                 {this.props.children}
             </li>
