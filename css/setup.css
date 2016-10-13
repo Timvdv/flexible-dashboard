@@ -81,7 +81,7 @@
     margin-right: 12px;
 }
 
-.setup-form-row input
+.setup-form-row input, .setup-form-row select
 {
     background: rgba(255,255,255,.6);
     border:white 1px solid;
@@ -89,6 +89,12 @@
     font-size: 14px;
     transition: all .3s ease-in-out;
     padding: 10px;
+    width: 200px;
+}
+
+.setup-form-row select
+{
+    margin-right: 24px;
 }
 
 .setup-form-row input:hover

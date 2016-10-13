@@ -11,6 +11,7 @@ export default class PimaticSetup extends Component {
         this.state = {
             step : 1,
             error: "",
+            http: "http://",
             url: "",
             port: 8080,
             username: "",
@@ -89,7 +90,7 @@ export default class PimaticSetup extends Component {
             $.ajax(
                 {
                     type: "GET",
-                    url: this.state.url + ":" + this.state.port + "/api",
+                    url: this.state.http + "" + this.state.url + ":" + this.state.port + "/api",
                     dataType: "json",
                     xhrFields: {
                         withCredentials: true
@@ -101,9 +102,9 @@ export default class PimaticSetup extends Component {
                     {
                         resolve(data);
                     },
-                    error: function()
+                    error: function(XMLHttpRequest, textStatus, errorThrown)
                     {
-                        reject(new Error("Could not connect to your API"));
+                        reject(new Error("Could not connect to your API. Make sure your CORS setting in Pimatic is set to: " + location.host + " " +  errorThrown));
                     }
                 });
         }.bind(this));
@@ -114,11 +115,11 @@ export default class PimaticSetup extends Component {
      */
     setDataProvider()
     {
-        this.state.url = this.state.url + ":" + this.state.port + "/api";
+        this.state.url = this.state.http + "" + this.state.url + ":" + this.state.port + "/api";
 
         const settings = {
             'provider': 'PimaticProvider',
-            'url': this.state.url,
+            'url': this.removeTrailingSlash(this.state.url),
             'username': this.state.username,
             'password': this.state.password
         };
@@ -131,6 +132,19 @@ export default class PimaticSetup extends Component {
         {
             this.nextStep();
         }.bind(this), 3000);
+    }
+
+    /**
+     * put http to state
+     * @param event
+     */
+    handleChangeHttp(event)
+    {
+        this.setState(
+            {
+                http: event.target.value
+            }
+        );
     }
 
     /**
@@ -186,6 +200,21 @@ export default class PimaticSetup extends Component {
     }
 
     /**
+     * Strip the / at the end of a url
+     * @param  {String} url
+     * @return {String}
+     */
+    removeTrailingSlash(url)
+    {
+        if(url.substr(-1) == '/')
+        {
+            url = url.substring(0, url.length - 1);
+        }
+
+        return url;
+    }
+
+    /**
      * Render the pimatic setup component
      * @returns {XML}
      */
@@ -200,9 +229,10 @@ export default class PimaticSetup extends Component {
             case 1:
                 html = (<div className="Setup setup-pimatic">
                     <div className="whitelist-domain">
-                        First: Whitelist this domain in Pimatic, otherwise CORS won't work.
+                        First: Whitelist this domain in Pimatic, <br />
+                        otherwise CORS won't work.
                     </div>
-                    
+                    <br /><br />
                     Enter your Pimatic credentials
                     <br />
 
@@ -210,8 +240,19 @@ export default class PimaticSetup extends Component {
                         {this.state.error}
                     </div>
 
+
                     <div className="setup-form-row">
-                        <span className="help-text">http://example.com (no trailing slash!)</span>
+                        <label htmlFor="port">
+                            http/https:
+                        </label>
+                        <select value={this.state.http} onChange={this.handleChangeHttp.bind(this)}>
+                            <option value="http://">http</option>
+                            <option value="https://">https</option>
+                        </select>  
+                    </div>
+
+                    <div className="setup-form-row">                  
+                        <span className="help-text">example.com</span>
                         <label htmlFor="url">
                             Pimatic IP:
                         </label>
