@@ -4,8 +4,8 @@
   "description": "Simple and lightweight Dashboard powered by ReactJS",
   "scripts": {
     "test": "eslint src",
-    "start": "node server.js",
-    "build": "webpack -p --config ./webpack.production.config.js"
+    "start": "node server.js --development",
+    "build": "webpack -p --config ./webpack.production.config.js && cp index.html dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "eslint-plugin-react": "^3.6.2",
     "gridster": "^0.5.6",
     "jquery": "^2.2.3",
+    "react-grid-layout": "^0.13.9",
     "sizzle": "^2.3.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.2",
@@ -41,6 +42,7 @@
   },
   "dependencies": {
     "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
     "history": "^3.0.0",
     "react": "^0.14.0",
     "react-d3-library": "^1.1.1",
