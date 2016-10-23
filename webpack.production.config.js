@@ -29,7 +29,6 @@ module.exports = {
             jQuery: 'jquery',
             $: 'jquery',
             jquery: 'jquery',
-            gridster: 'gridster',
             sidr: 'sidr',
         })
     ]

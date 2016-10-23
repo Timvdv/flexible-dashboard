@@ -9,12 +9,20 @@ A simple and lightweight Dashboard powered by ReactJS, did I mention it's super 
 ### Online demo :muscle:
 * [Flexible dashboard demo](http://dashboard.timvandevathorst.nl)
 
+### Normal installation
+```
+git clone https://github.com/Timvdv/flexible-dashboard
+cd flexible-dashboard
+npm install --production
+node server.js
+open http://localhost:3003
+```
 
-### Local installation
+### Development installation (with auto reload)
 
 ```
-git clone (this repo)
-cd (this repo)
+git clone https://github.com/Timvdv/flexible-dashboard
+cd flexible-dashboard
 npm install
 npm start
 open http://localhost:3003
