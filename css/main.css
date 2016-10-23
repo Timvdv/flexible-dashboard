@@ -6,15 +6,21 @@ body
     -moz-osx-font-smoothing: grayscale;    
 }
 
-.gridster {
-    margin: 0px auto;
+.container
+{
+    position: relative;
 }
 
 .list-nostyle {
     list-style: none;
 }
 
-.gridster ul {
+.widget-grid
+{
+    padding-top: 20px;
+}
+
+.widget-grid ul {
     list-style: none;
     padding: 0;
     margin: 0;
