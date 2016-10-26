@@ -1,7 +1,4 @@
-var webpack = require('webpack'),
-    WebpackDevServer = require('webpack-dev-server'),
-    config = require('./webpack.config'),
-    path = require("path"),
+var path = require("path"),
     express = require('express'),
     app = express(),
     dev = false;
@@ -15,6 +12,10 @@ process.argv.forEach(function (val, index, array) {
 
 if(dev)
 {
+    var webpack = require('webpack'),
+        WebpackDevServer = require('webpack-dev-server'),
+        config = require('./webpack.config');
+
     var server = new WebpackDevServer(webpack(config), {
         publicPath: config.output.publicPath,
         headers: {
