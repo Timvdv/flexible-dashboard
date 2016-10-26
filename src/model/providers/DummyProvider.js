@@ -12,7 +12,7 @@ export default class DummyProvider
         let widgets = [];
 
         //Add the Graph widget
-        widgets.push({"name":"GraphWidget", "col":1,"row":1,"sizex":4,"sizey":2,"color":"#fff","options":{},"tag":"GraphWidget"});
+        widgets.push({"id": "GraphWidget", "name":"GraphWidget", "col":1,"row":1,"sizex":4,"sizey":2,"color":"#fff","options":{},"tag":"GraphWidget"});
 
         //Loop over devices and convert the ones we know what to do with
         data.devices.map( (device) =>
@@ -20,6 +20,7 @@ export default class DummyProvider
             if(device.config.class == "ShellSwitch")
             {
                 let item = {
+                    "id":device.id,
                     "name":device.name,
                     "col":1,
                     "row":1,
@@ -41,7 +42,7 @@ export default class DummyProvider
         });
 
         //Add the Buienradar widget
-        widgets.push({"name":"weatherWidget", "col":1,"row":1,"sizex":1,"sizey":1,"color":"#3498db","options":{},"tag":"WeatherWidget"});
+        widgets.push({"id": "weatherWidget", "name":"weatherWidget", "col":1,"row":1,"sizex":1,"sizey":1,"color":"#3498db","options":{},"tag":"WeatherWidget"});
 
         return widgets;
     }

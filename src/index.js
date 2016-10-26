@@ -6,6 +6,7 @@ import App from './App';
 import Setup from './Setup'
 
 require("../css/vendor/gridster.css");
+require("../node_modules/react-grid-layout/css/styles.css");
 require("../css/main.css");
 
 /**

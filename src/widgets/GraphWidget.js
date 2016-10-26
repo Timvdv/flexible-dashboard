@@ -9,10 +9,12 @@ export default class GraphWidget extends Component {
     constructor(props) {
         super(props);
 
+        this.props.layout.w = 2;
+
         this.state = {
             data: {
-                width: 600,
-                height: 290,
+                width: 564,
+                height: 244,
                 x_display_name: "X VALUE",
                 y_display_name: "Y VALUE",
                 dataSet: [

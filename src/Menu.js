@@ -45,30 +45,28 @@ export default class Menu extends Component {
             );             
         }
 
+        let menu_widgets = [];
+
+        this.props.hidden_widgets.map((element) => {
+            if(element.hide) {
+                //TODO: doesnt work 100% yet
+                this.show_widgets_title = true;
+
+                menu_widgets.push(
+                    <div key={element.name}>
+                        <li onClick={this.props.addWidget} data-index={element.id}>
+                          {element.name}
+                        </li>
+                    </div>
+                );
+            }
+        }, this);
+
         return (
             <div className="menu" id="sidr">
                 <ul>
                     {widget_header}
-                    
-                    {
-                      this.props.widgets.map(function(element, i)
-                      {
-                          if(element.hide)
-                          {
-                            //TODO: doesnt work 100% yet
-                            this.show_widgets_title = true;
-
-                              return (
-                                <div key={element.name}>
-                                    <li onClick={this.props.toggleWidget}  data-index={i}>
-                                        {element.name}
-                                    </li>
-                                </div>
-                              );
-                          }
-                      }, this)
-                    }
-
+                    {menu_widgets}
                     <h3>
                         Settings
                     </h3>

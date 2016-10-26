@@ -5,14 +5,8 @@ import React, { Component } from 'react';
  * if I ever want to write code that applies to all widgets this is the place!
  */
 export default class Widget extends Component {
-    propTypes:{
-        children: React.PropTypes.element.isRequired
-    }
     constructor(props) {
         super(props);
-
-        console.log(props.name)
-
         this.timer = 0;
     }
 
@@ -57,21 +51,21 @@ export default class Widget extends Component {
         };
 
         var editing = "",
-              classNames = "widget gs-w"
+            classNames = "widget"
 
         $('.widget').removeClass('editing');
 
         if(this.props.editing)
         {
             $('.widget').addClass('editing');
-            editing = (<i className="material-icons remove-widget" onClick={this.props.onClick}>cancel</i>);
+            editing = (<i className="material-icons remove-widget" onClick={this.props.delete}>cancel</i>);
         }
 
         return (
-            <li data-row="1" data-col="1" onMouseUp={this.mouseUp.bind(this)} onMouseDown={this.mouseDown.bind(this)} className={classNames} style={styles.widget} data-row={this.props.row} data-col={this.props.col} data-sizex={this.props.sizex} data-sizey={this.props.sizey} data-name={this.props.name}>
+            <div data-row="1" data-col="1" onMouseUp={this.mouseUp.bind(this)} onMouseDown={this.mouseDown.bind(this)} className={classNames} style={styles.widget} data-row={this.props.row} data-col={this.props.col} data-sizex={this.props.sizex} data-sizey={this.props.sizey} data-name={this.props.name}>
                 {editing}
                 {this.props.children}
-            </li>
+            </div>
         );
     };
 }

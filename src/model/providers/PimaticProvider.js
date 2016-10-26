@@ -18,6 +18,7 @@ export default class PimaticProvider
             if(device.config.class == "ShellSwitch")
             {
                 let item = {
+                    "id":device.id,
                     "name":device.name,
                     "col":1,
                     "row":1,
@@ -40,6 +41,7 @@ export default class PimaticProvider
             if(device.config.class == "ShellSensor")
             {
                 let item = {
+                    "id":device.id,
                     "name":device.name,
                     "col":1,
                     "row":1,
@@ -68,6 +70,7 @@ export default class PimaticProvider
             if(device.value)
             {
                 let item = {
+                    "id":device.id,
                     "name":device.name,
                     "col":1,
                     "row":1,
